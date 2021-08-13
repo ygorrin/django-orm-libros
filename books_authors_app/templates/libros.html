@@ -76,7 +76,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for libro in libros%}
+                        {% for libro in libros reversed%}
                         <tr>
                             <th scope="row">{{libro.id}}</th>
                             <td>{{libro.titulo}}</td>

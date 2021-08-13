@@ -79,7 +79,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for autor in autores%}
+                        {% for autor in autores reversed%}
                         <tr>
                             <th scope="row">{{autor.id}}</th>
                             <td>{{autor.nombre}}</td>
