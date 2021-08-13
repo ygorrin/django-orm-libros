@@ -49,24 +49,39 @@ a.nombre = "Bill"
 a.save()
 
 Asigna el primer autor a los primeros 2 libros.
-autor1.libros.add(lista_libros[0])
+libro1 = Libro.objects.get(id=1)
+libro2 = Libro.objects.get(id=2)
+autor1 = Autor.objects.get(id=1)
+autor1.libros.add(libro1, libro2)
 
-Autor1 = Autor.objects.get(id=2)
-lista_libros = Libro.objects.all()
+Asigne el segundo autor a los primeros 3 libros. 
+libro3 = Libro.objects.get(id=3)
+autor2 = Autor.objects.get(id=2)
+autor2.libros.add(libro1,libro2, libro3)
 
-In [13]: Autor1.libros.add(lista_libros[0])
+Asigna el tercer autor a los primeros 4 libros.
+libro4= Libro.objects.get(id=4)
+autor3 = Autor.objects.get(id=3)
+autor3.libros.add(libro1, libro2, libro3, libro4) 
 
-In [14]: Autor1.libros.add(lista_libros[1])
+Asigne el cuarto autor a los primeros 5 libros (o en otras palabras, todos los libros)
+libro5 = Libro.objects.get(id=5)
+autor4 = Autor.objects.get(id=4)
+autor4.libros.add(libro1, libro2, libro3, libro4, libro5)
 
-In [15]: print(Autor1)
- Jane - Austen - <QuerySet [ C # - Programa C ,  Java - Programa Java ]>
+Recupera a todos los autores del tercer libro
+libro3.autores.all()
 
+Eliminar al primer autor del tercer libro
+primer_autor_tercer_libro = libro1.autores.get(id=1)
+primer_autor_tercer_libro.delete()
 
-Consulta: Asigne el segundo autor a los primeros 3 libros. Consulta: Asigna el tercer autor a los primeros 4 libros.
- Consulta: Asigne el cuarto autor a los primeros 5 libros (o en otras palabras, todos los libros)
- Consulta: recupera a todos los autores del tercer libro
- Consulta: eliminar al primer autor del tercer libro
- Consulta: Agregue el quinto autor como uno de los autores del segundo libro.
- Consulta: Encuentra todos los libros de los que el tercer autor es parte
- Consulta: Encuentra todos los autores que contribuyeron al quinto libro.
- Envíe su archivo .txt que contiene todas las consultas que ejecutó en el shell
+Agregue el quinto autor como uno de los autores del segundo libro.
+autor5 = Autor.objects.get(id=5)
+libro2.autores.add(autor5)
+
+Encuentra todos los libros de los que el tercer autor es parte
+libro2.autores.add(autor5)
+
+Encuentra todos los autores que contribuyeron al quinto libro.
+Autor.objects.filter(libros=libro5)

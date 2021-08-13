@@ -1,10 +1,35 @@
-.menu{
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
+.img-nav {
+    height: 50px;
+    width: auto;
 }
 
-.img-nav{
-    height:50px;
-    width: auto;
+.bg {
+    background: linear-gradient(95.61deg, rgba(255, 255, 255, 0.85) 59.36%, rgba(255, 255, 255, 0) 103.47%), url(../img/bg-desktop.jpeg) no-repeat center center/cover, #f8f6f6a4;
+    height: 100vh;
+    width: 100vw;
+}
+
+.modulo {
+    width: 50%;
+    height: 50%;
+    margin: 150px auto;
+    text-align: center;
+}
+.modulo2 {
+    width: 50%;
+    height: 50%;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.modulo>h3,
+.modulo>h4 {
+    text-align: center;
+    width: 100%;
+}
+
+.registros{
+    max-height: 60vh;
+    overflow-y: scroll;
+
 }

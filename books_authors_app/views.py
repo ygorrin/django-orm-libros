@@ -25,7 +25,7 @@ def ingresar_libro(request):
         titulo = request.POST['titulo'],
         desc = request.POST['desc'],
     )
-    return redirect("/")
+    return redirect("/libros")
 
 
 def ingresar_autor(request):
@@ -50,7 +50,6 @@ def ver_libro(request, id):
     context = {
         'libro' : libro,
         'autor_add': autor_add,
-        'autores': libro.autores.all(),
     }
     return render(request, 'libros_autores.html', context)
 
@@ -66,7 +65,6 @@ def ver_autor(request, id):
     context = {
         'autor' : autor,
         'libro_add': libro_add,
-        'libros': autor.libros.all(),
     }
     return render(request, 'autor_libros.html', context)
 
