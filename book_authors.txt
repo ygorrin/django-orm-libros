@@ -1,0 +1,72 @@
+class Libro(models.Model):
+    titulo = models.CharField(max_length=255)
+    desc = models.CharField(max_length=255)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
+    #autores 
+
+class Author(models.Model):
+    nombre = models.CharField(max_length=45)
+    apellido = models.CharField(max_length=45)
+    libros = models.ManyToManyField(Libro, related_name="autores")
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
+
+
+from books_authors_app.models import *
+
+Crea 5 libros con los siguientes nombres: C Sharp, Java, Python, PHP, Ruby
+Libro.objects.create(titulo="C Sharp", desc = "Libro de Programacion")
+Libro.objects.create(titulo="Java", desc = "Libro de Programacion")
+Libro.objects.create(titulo="Python", desc = "Libro de Programacion")
+Libro.objects.create(titulo="PHP", desc = "Libro de Programacion")
+Libro.objects.create(titulo="Ruby", desc = "Libro de Programacion")
+
+Crea 5 autores diferentes: Jane Austen, Emily Dickinson, Fyodor Dostoevksy, William Shakespeare, Lau Tzu
+Autor.objects.create(nombre="Jane", apellido="Austen")
+Autor.objects.create(nombre="Emily", apellido="Dickinson")
+Autor.objects.create(nombre="Fyodor", apellido="Dostoevksy")
+Autor.objects.create(nombre="William", apellido="Shakespeare")
+Autor.objects.create(nombre="Lau", apellido="Tzu")
+
+Agregue un nuevo campo de texto en la tabla de autores llamado 'notas'.
+notas = models.CharField(max_length=255)
+
+Cree y ejecute los archivos de migración para actualizar la tabla en su base de datos.
+python manage.py makemigrations
+python manage.py migrate
+python manage.py shell
+from books_authors_app.models import *
+
+Cambie el nombre del libro de C Sharp a C #
+c = Libro.objects.get(titulo="C Sharp")
+c.titulo = "C #"
+c.save()
+
+Cambie el nombre del cuarto autor a Bill
+a = Autor.objects.get(id= 6)
+a.nombre = "Bill"
+a.save()
+
+Asigna el primer autor a los primeros 2 libros.
+autor1.libros.add(lista_libros[0])
+
+Autor1 = Autor.objects.get(id=2)
+lista_libros = Libro.objects.all()
+
+In [13]: Autor1.libros.add(lista_libros[0])
+
+In [14]: Autor1.libros.add(lista_libros[1])
+
+In [15]: print(Autor1)
+ Jane - Austen - <QuerySet [ C # - Programa C ,  Java - Programa Java ]>
+
+
+Consulta: Asigne el segundo autor a los primeros 3 libros. Consulta: Asigna el tercer autor a los primeros 4 libros.
+ Consulta: Asigne el cuarto autor a los primeros 5 libros (o en otras palabras, todos los libros)
+ Consulta: recupera a todos los autores del tercer libro
+ Consulta: eliminar al primer autor del tercer libro
+ Consulta: Agregue el quinto autor como uno de los autores del segundo libro.
+ Consulta: Encuentra todos los libros de los que el tercer autor es parte
+ Consulta: Encuentra todos los autores que contribuyeron al quinto libro.
+ Envíe su archivo .txt que contiene todas las consultas que ejecutó en el shell

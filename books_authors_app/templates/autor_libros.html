@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autores de los libros</title>
+    {% load static %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-6 mt-5">
+                <h3>Autor: {{autor.nombre}}, {{autor.apellido}}</h3>
+                <h4> ID:          {{autor.id}}</h4>
+                <h5> Notas: {{autor.notas}} </h5>
+                <h5> Lista de libros:  </h5>
+                <ul>
+                    {% for libro in autor.libros.all %}
+                        <li> {{libro.titulo}}, {{libro.desc}}</li>
+                    {% endfor %}
+                </ul>
+
+                <form method="POST" action="/agregar_libro_al_autor">
+                    {% csrf_token %}
+                    <input type="hidden" class="form-control" id="autor_id" name="autor_id" value="{{autor.id}}">
+                    <div class="mb-3">
+                        <label for="libro_id" class="form-label"> </label>
+                        <select class="form-select" name ="libro_id">
+                            <option selected value ="">Selecciona un libro de el autor</option>
+                            {% for libro in libro_add %}
+                                <option name: "libro_id" value="{{libro.id}}">{{libro.titulo}}, {{libro.desc}}</option>
+                            {% endfor%}
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Añadir libro al autor</button>
+                </form>
+            </div>
+        </div>
+        <hr>
+        <h3 class="mx-auto"> Librería de Acciones </h3>
+        <a class="btn btn-outline-secondary" href="/libros">Ingresar libro</a>
+        <a class="btn btn-outline-secondary" href="/libros">Libros registrados</a>
+        <a class="btn btn-outline-secondary" href="/autores">Ingresar autor</a>
+        <a class="btn btn-outline-secondary" href="/autores">Autores registrados</a>
+</div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+            crossorigin="anonymous"></script>
+        <script src="{% static 'js/index.js' %}"></script>
+</body>
+
+</html>

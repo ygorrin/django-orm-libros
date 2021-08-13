@@ -1,0 +1,10 @@
+.menu{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+.img-nav{
+    height:50px;
+    width: auto;
+}
